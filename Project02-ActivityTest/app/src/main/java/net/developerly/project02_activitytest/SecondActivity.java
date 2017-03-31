@@ -23,7 +23,9 @@ public class SecondActivity extends BaseActivity {
 
             @Override
             public void onClick(View v) {
-                returnData();
+//                returnData();
+                Intent intent = new Intent(SecondActivity.this, ThirdActivity.class); // 显式Intent
+                startActivity(intent);
             }
         });
     }
