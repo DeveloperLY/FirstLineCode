@@ -1,5 +1,6 @@
 package net.developerly.project02_activitytest;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -41,8 +42,7 @@ public class FirstActivity extends BaseActivity {
 //                intent.putExtra("extra_data", data);
 //                startActivity(intent);
 
-                Intent intent = new Intent(FirstActivity.this, SecondActivity.class); // 显式Intent
-                startActivityForResult(intent, 1);
+                SecondActivity.actionStart(FirstActivity.this, "data1", "data2");
             }
         });
     }
