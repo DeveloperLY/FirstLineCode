@@ -1,7 +1,10 @@
 package net.developerly.project02_activitytest;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +25,24 @@ public class FirstActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(FirstActivity.this, "You clicked Button1", Toast.LENGTH_LONG).show();
                 // 销毁当前活动
-                finish();
+//                finish();
+//                Intent intent = new Intent(FirstActivity.this, SecondActivity.class); // 显式Intent
+//                Intent intent = new Intent("net.developerly.activitytest.ACTION_START"); // 隐式Intent
+//                intent.addCategory("net.developerly.activitytest.MY_CATEGORY");
+
+//                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                intent.setData(Uri.parse("http://www.baidu.com"));
+
+//                Intent intent = new Intent(Intent.ACTION_DIAL);
+//                intent.setData(Uri.parse("tel:10086"));
+
+//                String data = "Hello SecondActivity";
+//                Intent intent = new Intent(FirstActivity.this, SecondActivity.class); // 显式Intent
+//                intent.putExtra("extra_data", data);
+//                startActivity(intent);
+
+                Intent intent = new Intent(FirstActivity.this, SecondActivity.class); // 显式Intent
+                startActivityForResult(intent, 1);
             }
         });
     }
@@ -47,4 +67,18 @@ public class FirstActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    String returnedData = data.getStringExtra("data_return");
+                    Log.d("FirstActivity", returnedData);
+                }
+                break;
+            default:
+        }
+    }
+
 }
